@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$FARMER - Official Trump Farmer Coin</title>
+    <title>$FARMER - The Official Trump Farmer Coin</title>
     <style>
         * {
             margin: 0;
@@ -13,139 +13,114 @@
         }
         
         body {
-            background-color: #f5f5dc; /* Beige farm-like background */
-            color: #333;
+            background-image: url('https://github.com/alphasoldev/Farmer/blob/Images/IMG_20250410_212506_852.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
         }
         
-        /* Corn rain animation */
-        .corn-container {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
             width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
+            position: relative;
             overflow: hidden;
         }
         
-        .corn {
-            position: absolute;
-            width: 30px;
-            height: 50px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 40'%3E%3Cpath d='M12 0L8 10C8 16 8 22 12 28C16 22 16 16 16 10L12 0Z' fill='%23f9d423'/%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
-            animation: fall linear infinite;
-            z-index: 1;
-        }
-        
-        @keyframes fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(60deg);
-                opacity: 0.7;
-            }
-        }
-        
         header {
-            background-color: #FFD700; /* Gold yellow */
-            color: #333;
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 2;
-        }
-        
-        .logo {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
+            padding: 20px 5%;
+            background-color: rgba(25, 96, 3, 0.8);
         }
         
-        .logo img {
-            width: 80px;
-            height: 80px;
-            margin-right: 1rem;
-        }
-        
-        .logo h1 {
-            font-size: 2.5rem;
+        .brand-name {
+            font-size: 24px;
             font-weight: bold;
+            color: #f8e14b;
         }
         
-        .token-name {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+        .nav-links {
+            display: flex;
+            list-style: none;
         }
         
-        .hero {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            padding: 3rem 1rem;
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #f8e14b;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
             text-align: center;
-            position: relative;
-            z-index: 2;
         }
         
-        .hero h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #333;
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #f8e14b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         
-        .hero p {
-            font-size: 1.25rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            color: #333;
+        .tagline {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            color: #a5e65a;
         }
         
-        .cta-button {
-            background-color: #006400; /* Dark green */
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
             color: white;
-            border: none;
-            padding: 1rem 2rem;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
             font-size: 1.2rem;
             font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            margin: 0.5rem;
+            margin: 10px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
         }
         
-        .cta-button:hover {
-            background-color: #004d00;
+        .btn:hover {
+            background-color: transparent;
+            border: 2px solid #4CAF50;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
         .features {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            padding: 3rem 1rem;
-            background-color: #fff;
-            position: relative;
-            z-index: 2;
+            margin: 60px 0;
         }
         
         .feature-card {
-            background-color: #f9f9f9;
+            background-color: rgba(73, 120, 7, 0.8);
             border-radius: 10px;
-            padding: 2rem;
-            margin: 1rem;
+            padding: 30px;
+            margin: 15px;
             width: 300px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
         }
         
         .feature-card:hover {
@@ -154,194 +129,350 @@
         
         .feature-icon {
             font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #FFD700;
+            margin-bottom: 20px;
+            color: #f8e14b;
         }
         
-        .trump-section {
-            padding: 3rem 1rem;
-            text-align: center;
-            background-color: #FFD700;
-            position: relative;
-            z-index: 2;
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
         }
         
-        .trump-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+        .feature-text {
+            font-size: 1rem;
+            color: #ddd;
         }
         
-        .farm-decoration {
-            position: absolute;
-            z-index: 1;
-            opacity: 0.2;
+        .about-section {
+            background-color: rgba(48, 78, 5, 0.8);
+            padding: 60px 20px;
+            margin: 40px 0;
+            border-radius: 10px;
         }
         
-        .tractor {
-            bottom: 20px;
-            left: 5%;
-            width: 100px;
-            height: 100px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M352 352c-35.3 0-64 28.7-64 64s28.7 64 64 64 64-28.7 64-64-28.7-64-64-64zm0 96c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm-192-96c-35.3 0-64 28.7-64 64s28.7 64 64 64 64-28.7 64-64-28.7-64-64-64zm0 96c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z' fill='%23006400'/%3E%3Cpath d='M384 128h-30.7l-34.6-64H256c-17.7 0-32 14.3-32 32v64h-16V96c0-17.7-14.3-32-32-32H96c-17.7 0-32 14.3-32 32v144h36.1c6.2-36.7 38.4-64 76.9-64s70.6 27.3 76.9 64H384c17.7 0 32-14.3 32-32v-48c0-17.7-14.3-32-32-32zm0 80H256v-64h96.5l31.5 64z' fill='%23006400'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         
-        .cow {
-            top: 30%;
-            right: 5%;
-            width: 80px;
-            height: 80px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M256 48c-26.5 0-48 21.5-48 48 0 7.1 1.6 13.7 4.2 19.8L184 144c-4.3 3-8.9 6.8-13.6 11.6-11.9 12.1-27.2 34.3-27.2 70.4-28.8 12.2-45.7 31.8-55.5 58.4-8.9 24.3-9.5 52.6-6.6 83.2 11.4-23.9 30.5-35.4 52.8-35.4 11.1 0 20.2 3.2 27.5 7.2 28.2-14.1 71.9-36 176.8-39.5 3.9 13.7 9 47.5 12.3 64.6 2 10.5 9.4 30.1 37.8 19.9-21.9-111.7-62.2-217-62.2-217l-30.6-27c3.3-6.5 5.4-13.8 5.4-21.8 0-26.5-21.5-48-48-48z' fill='%23A52A2A'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            text-align: left;
         }
         
-        .barn {
-            top: 60%;
-            left: 10%;
-            width: 120px;
-            height: 120px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath d='M576 240v32c0 8.8-7.2 16-16 16h-80v192c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32V288H16c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16h48c0-74.2 55.6-135.2 127.3-143.1-5.5-16.8-9.3-33.8-9.3-52.9 0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16 0 19.1-3.8 36.1-9.3 52.9C308.4 136.8 364 197.8 364 272h48c8.8 0 16 7.2 16 16H128v192h320V288h-32c8.8 0 16-7.2 16-16zm-96 0c0-52.9-43.1-96-96-96s-96 43.1-96 96h192zm-192 96h64v96h-64v-96zm128 0h64v96h-64v-96z' fill='%23A52A2A'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
         }
         
-        .wheat {
-            bottom: 10%;
-            right: 15%;
-            width: 60px;
-            height: 120px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L8 6C8 8 9 9 11 9.5C8 10 7 12 7 14L5 12C4.5 14 5 15 7 16C5 17 4.5 19 5 20L2 22H22L19 20C19.5 19 19 17 17 16C19 15 19.5 14 19 12L17 14C17 12 16 10 13 9.5C15 9 16 8 16 6L12 2Z' fill='%23FFD700'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #f8e14b;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
         
         footer {
-            background-color: #006400;
-            color: white;
+            background-color: rgba(25, 96, 3, 0.8);
+            padding: 20px;
             text-align: center;
-            padding: 2rem;
-            position: relative;
-            z-index: 2;
         }
         
-        .social-links {
+        .copyright {
+            font-size: 1rem;
+            color: #ddd;
+        }
+        
+        .agriculture-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            color: #f8e14b;
+        }
+        
+        @media screen and (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-links {
+                margin-top: 20px;
+            }
+            
+            .nav-links li {
+                margin: 0 10px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.4rem;
+            }
+        }
+        
+        .cow-btn {
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        
+        .cow-btn:hover {
+            background-color: #6B3309;
+            transform: scale(1.05);
+        }
+        
+        .chicken-btn {
+            background-color: #FF8C00;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-left: 10px;
+            transition: all 0.3s;
+        }
+        
+        .chicken-btn:hover {
+            background-color: #E67300;
+            transform: scale(1.05);
+        }
+        
+        .chicken {
+            position: absolute;
+            top: -100px;
+            z-index: 100;
+            font-size: 40px;
+            animation: fall linear forwards;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(calc(100vh + 100px));
+            }
+        }
+        
+        .roadmap {
+            padding: 60px 0;
+        }
+        
+        .roadmap-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .roadmap-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background-color: #4CAF50;
+            transform: translateX(-50%);
+        }
+        
+        .roadmap-item {
+            position: relative;
+            margin-bottom: 50px;
             display: flex;
             justify-content: center;
-            margin-top: 1rem;
         }
         
-        .social-links a {
-            color: white;
-            margin: 0 1rem;
-            font-size: 1.5rem;
-            text-decoration: none;
+        .roadmap-content {
+            background-color: rgba(73, 120, 7, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            width: 80%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
-        @media (max-width: 768px) {
-            .logo h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero h2 {
-                font-size: 1.5rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .cta-button {
-                padding: 0.8rem 1.5rem;
-                font-size: 1rem;
-            }
+        .roadmap-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #f8e14b;
+        }
+        
+        .roadmap-content p {
+            font-size: 1rem;
+            color: #fff;
         }
     </style>
 </head>
 <body>
-    <!-- Corn rain container -->
-    <div class="corn-container" id="cornContainer"></div>
-    
-    <!-- Farm decorations -->
-    <div class="farm-decoration tractor"></div>
-    <div class="farm-decoration cow"></div>
-    <div class="farm-decoration barn"></div>
-    <div class="farm-decoration wheat"></div>
-    
-    <header>
-        <div class="logo">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='256' fill='%23FFD700'/%3E%3Cpath d='M390 180c0-5.5-4.5-10-10-10h-30v-30c0-5.5-4.5-10-10-10h-20c-5.5 0-10 4.5-10 10v30h-30c-5.5 0-10 4.5-10 10v20c0 5.5 4.5 10 10 10h30v30c0 5.5 4.5 10 10 10h20c5.5 0-10-4.5-10-10v-30h30c5.5 0 10-4.5 10-10v-20zm-150-10h-30v-30c0-5.5-4.5-10-10-10h-20c-5.5 0-10 4.5-10 10v30h-30c-5.5 0-10 4.5-10 10v20c0 5.5 4.5 10 10 10h30v30c0 5.5 4.5 10 10 10h20c5.5 0-10-4.5-10-10v-30h30c5.5 0 10-4.5 10-10v-20c0-5.5-4.5-10-10-10zm11.3 160.3L208 352c-4.8 16-15.6 25.8-38.1 29.4-5.8.9-11.1 4-14.4 9L146 406l92 61.3 92-61.3-9.4-15.5c-3.3-5-8.6-8.1-14.4-9-22.6-3.6-33.3-13.4-38.1-29.4l-43.3-31.7c-5.7-4.2-8.3-11.3-6.5-18.1 24.6-45.1 90.2-34.3 90.2-116.1 0-22.1-17.9-40-40-40s-40 17.9-40 40c0 27.9 19.5 31.8 22.8 31.8 7.8 0 11.4 9.8 5.9 15.5-12 12.2-29.2 12.2-41.2 0-5.4-5.8-1.8-15.5 6-15.5 3.3 0 22.8-3.9 22.8-31.8 0-22.1-17.9-40-40-40s-40 17.9-40 40c0 81.8 65.6 71 90.2 116.1 1.7 6.8-.9 13.9-6.6 18.2z' fill='%23006400'/%3E%3C/svg%3E" alt="Farmer Coin Logo">
-            <h1>Official Trump Farmer Coin</h1>
-        </div>
-        <p class="token-name">$FARMER</p>
-    </header>
-    
-    <section class="hero">
-        <h2>"We are going to work with farmers"</h2>
-        <p>The first Solana token dedicated to supporting American farmers and Trump's family</p>
-        <button class="cta-button">Buy $FARMER</button>
-        <button class="cta-button">Join Community</button>
-    </section>
-    
-    <section class="features">
-        <div class="feature-card">
-            <div class="feature-icon">🌽</div>
-            <h3>Farm to Token</h3>
-            <p>Direct support for local farming communities through blockchain technology</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">🚜</div>
-            <h3>Agricultural Innovation</h3>
-            <p>Funding new technologies to improve farming efficiency and Trump's twit</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">🌾</div>
-            <h3>Yield Farming</h3>
-            <p>Stake your $FARMER tokens and earn rewards like a real farmer</p>
-        </div>
-    </section>
-    
-    <section class="trump-section">
-        <h2>Making American Agriculture Great Again</h2>
-        <p>Supporting policies that benefit American farmers and Trump wallet </p>
-        <div style="margin-top: 2rem;">
-            <button class="cta-button">View Roadmap</button>
-        </div>
-    </section>
-    
-    <footer>
-        <p>© 2025 Official Trump farmer Coin. All rights reserved.</p>
-        <p>$FARMER is a Solana token dedicated to the agricultural community.</p>
-        <div class="social-links">
-            <a href="#">Twitter</a>
-            <a href="#">Telegram</a>
-            <a href="#">Discord</a>
-        </div>
-    </footer>
+    <div class="overlay" id="overlay">
+        <header>
+            <div class="brand-name">$FARMER</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+            </ul>
+        </header>
+        
+        <section id="home" class="container">
+            <h1>$FARMER - The Official Trump Farmer Coin</h1>
+            <p class="tagline">We are going to work with farmers</p>
+            <div>
+                <a href="#" class="btn">Buy $FARMER</a>
+                <a href="#" class="btn">Join Community</a>
+            </div>
+            <button class="cow-btn" onclick="playMoo()">Hear Our Mascot!</button>
+            <button class="chicken-btn" onclick="makeItRain()">Chicken Rain!</button>
+            <audio id="cowSound" src="https://soundbible.com/mp3/Cow_Moo-Mike_Koenig-42670858.mp3"></audio>
+            <audio id="chickenSound" src="https://soundbible.com/mp3/Chicken-SoundBible.com-744735403.mp3"></audio>
+        </section>
+        
+        <section id="features" class="container">
+            <h2>CA: 6vrkH32gLMy8Lpw2hvGkAXk1WGPN5p8bJ9ZNtaYGpump </h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3 class="feature-title">Supporting Agriculture</h3>
+                    <p class="feature-text">$FARMER is dedicated to empowering farmers and supporting sustainable agricultural practices worldwide.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚜</div>
+                    <h3 class="feature-title">Community Driven</h3>
+                    <p class="feature-text">A strong community of agriculture enthusiasts and blockchain innovators working together.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🐓</div>
+                    <h3 class="feature-title">Eco-Friendly</h3>
+                    <p class="feature-text">Built on environmentally conscious blockchain technology to minimize our carbon footprint.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="about" class="about-section">
+            <h2>About $FARMER</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>$FARMER is the first cryptocurrency dedicated to revolutionizing the agricultural industry. Our mission is to create a bridge between traditional farming and modern blockchain technology.</p>
+                    <p>By investing in $FARMER, you're not just buying a token - you're supporting a movement to empower farmers around the world and ensure sustainable farming practices for generations to come.</p>
+                    <p>We believe in the power of decentralized finance to transform agriculture, providing farmers with new opportunities for funding, market access, and community support.</p>
+                    <div style="text-align: left; margin-top: 30px;">
+                        <span class="agriculture-icon">🌾</span>
+                        <span class="agriculture-icon">🐄</span>
+                        <span class="agriculture-icon">🐓</span>
+                        <span class="agriculture-icon">🐖</span>
+                        <span class="agriculture-icon">🚜</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/400/320" alt="Farming Community">
+                </div>
+            </div>
+        </section>
+        
+        <section id="roadmap" class="container roadmap">
+            <h2>$FARMER Roadmap</h2>
+            <div class="roadmap-container">
+                <div class="roadmap-line"></div>
+                <div class="roadmap-item">
+                    <div class="roadmap-content">
+                        <h3>Phase 1: Planting the Seeds</h3>
+                        <p>Website launch, community building, and initial partnerships with agricultural organizations.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-content">
+                        <h3>Phase 2: Growing the Crops</h3>
+                        <p>Development of farming-focused DeFi tools and expanded market presence.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-content">
+                        <h3>Phase 3: Harvesting Success</h3>
+                        <p>Implementation of real-world applications for farmers, major exchange listings, and global expansion.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-content">
+                        <h3>Phase 4: Sustainable Farming</h3>
+                        <p>Creation of a comprehensive ecosystem connecting farmers worldwide with advanced blockchain solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <div class="copyright">© 2025 $FARMER. All rights reserved.</div>
+            <div style="margin-top: 10px;">
+                <span class="agriculture-icon">🌱</span>
+                <span class="agriculture-icon">🌿</span>
+                <span class="agriculture-icon">🍃</span>
+            </div>
+        </footer>
+    </div>
     
     <script>
-        // Create falling corn animation
-        const cornContainer = document.getElementById('cornContainer');
-        const numberOfCorns = 20;
+        function playMoo() {
+            document.getElementById('cowSound').play();
+        }
         
-        for (let i = 0; i < numberOfCorns; i++) {
-            const corn = document.createElement('div');
-            corn.classList.add('corn');
+        function makeItRain() {
+            document.getElementById('chickenSound').play();
             
-            // Random positioning
-            corn.style.left = `${Math.random() * 100}%`;
-            corn.style.opacity = `${Math.random() * 0.7 + 0.3}`;
+            // Create 20 chickens
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    createChicken();
+                }, i * 300);
+            }
+        }
+        
+        function createChicken() {
+            const overlay = document.getElementById('overlay');
+            const chicken = document.createElement('div');
+            chicken.className = 'chicken';
+            chicken.textContent = '🐔';
             
-            // Random size
-            const size = Math.random() * 30 + 20;
-            corn.style.width = `${size}px`;
-            corn.style.height = `${size * 1.6}px`;
+            // Random horizontal position
+            const left = Math.random() * 100;
+            chicken.style.left = left + '%';
             
-            // Random animation duration
-            const duration = Math.random() * 10 + 10;
-            corn.style.animationDuration = `${duration}s`;
+            // Random fall duration between 3 and 6 seconds
+            const fallDuration = 3 + Math.random() * 3;
+            chicken.style.animationDuration = fallDuration + 's';
             
-            // Random animation delay
-            corn.style.animationDelay = `${Math.random() * 10}s`;
+            overlay.appendChild(chicken);
             
-            cornContainer.appendChild(corn);
+            // Remove chicken after animation completes
+            setTimeout(() => {
+                chicken.remove();
+            }, fallDuration * 1000);
         }
     </script>
 </body>
