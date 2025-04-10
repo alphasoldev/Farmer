@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$FARMER - Official Farmer Coin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5dc; /* Beige farm-like background */
+            color: #333;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Corn rain animation */
+        .corn-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .corn {
+            position: absolute;
+            width: 30px;
+            height: 50px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 40'%3E%3Cpath d='M12 0L8 10C8 16 8 22 12 28C16 22 16 16 16 10L12 0Z' fill='%23f9d423'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: fall linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(60deg);
+                opacity: 0.7;
+            }
+        }
+        
+        header {
+            background-color: #FFD700; /* Gold yellow */
+            color: #333;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo img {
+            width: 80px;
+            height: 80px;
+            margin-right: 1rem;
+        }
+        
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        
+        .token-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #333;
+        }
+        
+        .cta-button {
+            background-color: #006400; /* Dark green */
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            margin: 0.5rem;
+        }
+        
+        .cta-button:hover {
+            background-color: #004d00;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 3rem 1rem;
+            background-color: #fff;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 1rem;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+        
+        .trump-section {
+            padding: 3rem 1rem;
+            text-align: center;
+            background-color: #FFD700;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .trump-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .farm-decoration {
+            position: absolute;
+            z-index: 1;
+            opacity: 0.2;
+        }
+        
+        .tractor {
+            bottom: 20px;
+            left: 5%;
+            width: 100px;
+            height: 100px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M352 352c-35.3 0-64 28.7-64 64s28.7 64 64 64 64-28.7 64-64-28.7-64-64-64zm0 96c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm-192-96c-35.3 0-64 28.7-64 64s28.7 64 64 64 64-28.7 64-64-28.7-64-64-64zm0 96c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z' fill='%23006400'/%3E%3Cpath d='M384 128h-30.7l-34.6-64H256c-17.7 0-32 14.3-32 32v64h-16V96c0-17.7-14.3-32-32-32H96c-17.7 0-32 14.3-32 32v144h36.1c6.2-36.7 38.4-64 76.9-64s70.6 27.3 76.9 64H384c17.7 0 32-14.3 32-32v-48c0-17.7-14.3-32-32-32zm0 80H256v-64h96.5l31.5 64z' fill='%23006400'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+        }
+        
+        .cow {
+            top: 30%;
+            right: 5%;
+            width: 80px;
+            height: 80px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M256 48c-26.5 0-48 21.5-48 48 0 7.1 1.6 13.7 4.2 19.8L184 144c-4.3 3-8.9 6.8-13.6 11.6-11.9 12.1-27.2 34.3-27.2 70.4-28.8 12.2-45.7 31.8-55.5 58.4-8.9 24.3-9.5 52.6-6.6 83.2 11.4-23.9 30.5-35.4 52.8-35.4 11.1 0 20.2 3.2 27.5 7.2 28.2-14.1 71.9-36 176.8-39.5 3.9 13.7 9 47.5 12.3 64.6 2 10.5 9.4 30.1 37.8 19.9-21.9-111.7-62.2-217-62.2-217l-30.6-27c3.3-6.5 5.4-13.8 5.4-21.8 0-26.5-21.5-48-48-48z' fill='%23A52A2A'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+        }
+        
+        .barn {
+            top: 60%;
+            left: 10%;
+            width: 120px;
+            height: 120px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath d='M576 240v32c0 8.8-7.2 16-16 16h-80v192c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32V288H16c-8.8 0-16-7.2-16-16v-32c0-8.8 7.2-16 16-16h48c0-74.2 55.6-135.2 127.3-143.1-5.5-16.8-9.3-33.8-9.3-52.9 0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16 0 19.1-3.8 36.1-9.3 52.9C308.4 136.8 364 197.8 364 272h48c8.8 0 16 7.2 16 16H128v192h320V288h-32c8.8 0 16-7.2 16-16zm-96 0c0-52.9-43.1-96-96-96s-96 43.1-96 96h192zm-192 96h64v96h-64v-96zm128 0h64v96h-64v-96z' fill='%23A52A2A'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+        }
+        
+        .wheat {
+            bottom: 10%;
+            right: 15%;
+            width: 60px;
+            height: 120px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L8 6C8 8 9 9 11 9.5C8 10 7 12 7 14L5 12C4.5 14 5 15 7 16C5 17 4.5 19 5 20L2 22H22L19 20C19.5 19 19 17 17 16C19 15 19.5 14 19 12L17 14C17 12 16 10 13 9.5C15 9 16 8 16 6L12 2Z' fill='%23FFD700'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+        }
+        
+        footer {
+            background-color: #006400;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Corn rain container -->
+    <div class="corn-container" id="cornContainer"></div>
+    
+    <!-- Farm decorations -->
+    <div class="farm-decoration tractor"></div>
+    <div class="farm-decoration cow"></div>
+    <div class="farm-decoration barn"></div>
+    <div class="farm-decoration wheat"></div>
+    
+    <header>
+        <div class="logo">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='256' fill='%23FFD700'/%3E%3Cpath d='M390 180c0-5.5-4.5-10-10-10h-30v-30c0-5.5-4.5-10-10-10h-20c-5.5 0-10 4.5-10 10v30h-30c-5.5 0-10 4.5-10 10v20c0 5.5 4.5 10 10 10h30v30c0 5.5 4.5 10 10 10h20c5.5 0-10-4.5-10-10v-30h30c5.5 0 10-4.5 10-10v-20zm-150-10h-30v-30c0-5.5-4.5-10-10-10h-20c-5.5 0-10 4.5-10 10v30h-30c-5.5 0-10 4.5-10 10v20c0 5.5 4.5 10 10 10h30v30c0 5.5 4.5 10 10 10h20c5.5 0-10-4.5-10-10v-30h30c5.5 0 10-4.5 10-10v-20c0-5.5-4.5-10-10-10zm11.3 160.3L208 352c-4.8 16-15.6 25.8-38.1 29.4-5.8.9-11.1 4-14.4 9L146 406l92 61.3 92-61.3-9.4-15.5c-3.3-5-8.6-8.1-14.4-9-22.6-3.6-33.3-13.4-38.1-29.4l-43.3-31.7c-5.7-4.2-8.3-11.3-6.5-18.1 24.6-45.1 90.2-34.3 90.2-116.1 0-22.1-17.9-40-40-40s-40 17.9-40 40c0 27.9 19.5 31.8 22.8 31.8 7.8 0 11.4 9.8 5.9 15.5-12 12.2-29.2 12.2-41.2 0-5.4-5.8-1.8-15.5 6-15.5 3.3 0 22.8-3.9 22.8-31.8 0-22.1-17.9-40-40-40s-40 17.9-40 40c0 81.8 65.6 71 90.2 116.1 1.7 6.8-.9 13.9-6.6 18.2z' fill='%23006400'/%3E%3C/svg%3E" alt="Farmer Coin Logo">
+            <h1>Official Farmer Coin</h1>
+        </div>
+        <p class="token-name">$FARMER</p>
+    </header>
+    
+    <section class="hero">
+        <h2>"We are going to work with farmers"</h2>
+        <p>The first Solana token dedicated to supporting American farmers and agricultural innovation</p>
+        <button class="cta-button">Buy $FARMER</button>
+        <button class="cta-button">Join Community</button>
+    </section>
+    
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon">🌽</div>
+            <h3>Farm to Token</h3>
+            <p>Direct support for local farming communities through blockchain technology</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🚜</div>
+            <h3>Agricultural Innovation</h3>
+            <p>Funding new technologies to improve farming efficiency and sustainability</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌾</div>
+            <h3>Yield Farming</h3>
+            <p>Stake your $FARMER tokens and earn rewards like a real farmer</p>
+        </div>
+    </section>
+    
+    <section class="trump-section">
+        <h2>Making American Agriculture Great Again</h2>
+        <p>Supporting policies that benefit American farmers (Trump gouvernment)and strengthen our agricultural communities</p>
+        <div style="margin-top: 2rem;">
+            <button class="cta-button">View Roadmap</button>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2025 Official Farmer Coin. All rights reserved.</p>
+        <p>$FARMER is a Solana token dedicated to the agricultural of TRUMP.</p>
+        <div class="social-links">
+            <a href="#">Twitter</a>
+            <a href="#">Telegram</a>
+            <a href="#">Discord</a>
+        </div>
+    </footer>
+    
+    <script>
+        // Create falling corn animation
+        const cornContainer = document.getElementById('cornContainer');
+        const numberOfCorns = 20;
+        
+        for (let i = 0; i < numberOfCorns; i++) {
+            const corn = document.createElement('div');
+            corn.classList.add('corn');
+            
+            // Random positioning
+            corn.style.left = `${Math.random() * 100}%`;
+            corn.style.opacity = `${Math.random() * 0.7 + 0.3}`;
+            
+            // Random size
+            const size = Math.random() * 30 + 20;
+            corn.style.width = `${size}px`;
+            corn.style.height = `${size * 1.6}px`;
+            
+            // Random animation duration
+            const duration = Math.random() * 10 + 10;
+            corn.style.animationDuration = `${duration}s`;
+            
+            // Random animation delay
+            corn.style.animationDelay = `${Math.random() * 10}s`;
+            
+            cornContainer.appendChild(corn);
+        }
+    </script>
+</body>
+</html>
